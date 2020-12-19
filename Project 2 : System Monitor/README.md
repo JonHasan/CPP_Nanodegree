@@ -1,6 +1,11 @@
 # CppND-System-Monitor
 
+
 This is the second project in the Nanodegree. I needed to be able to parse linux system files in order to create a system monitor. This one had its own unique set of challenges but it was just an exercise in Object Oriented Programming. I will be going over the basics in detail. 
+
+## Motivation
+
+This project is an attempt to recreate something similar to HTOP. It is a linux system monitor that shows CPU utilization of different processes. This project will allow us to develop our Object Oriented Programming skills and scope resolution skills. 
 
 ![System Monitor](images/monitor.png)
 
