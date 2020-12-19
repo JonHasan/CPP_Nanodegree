@@ -52,6 +52,38 @@ The heuristic is a follows
 
 h(x,y) <= Distance to goal from x,y
 
+## Code breakdown
+
+Since I am new to C++, I am going to take a different approach to this github. Rather than restrict myself to just showing how to run the project, I want to prove to myself that I am understanding what is going on in the code. Below, I will break down the code and try and explain what is going on. I had to have a lot of help from some smart people on the udacity forums to finish this project. I need to be able to accurately describe the setup of the code and relate it to the pseudocode above. 
+
+### First task : Start and end coordinates
+
+The first todo tasked me with initilizing a start and end coordinate pair. This was pretty simple. I just had to initialize four float variables and then used cin to accept keyboard input values. However, there is an issue. There is no "sanity check" as my grader pointed out. I would need to use a while loop to curb inputs to a value between 0 and 100.
+
+### Second task : Find closest nodes
+
+The second todo tasked me with finding the nodes closest to the coordinates given in the first task. The function was called RoutePlanner::RoutePlanner and took in a reference and two floats as parameters.  I had to generate references to the m_model object of type RouteModel and then apply the Find ClosestNode method. The reference prevents excess memory bloat by only having the methods acting on the same object without making extra copies. 
+
+The ClosestNode Method takes in the x and y coordinate, imparts the values to the node variable called input. It then instantiates a min_dist variable using a numeric limits template, a dist variable of type float and an int closest_idx variable. It then loops through the Roads() and makes sure that it isn't a footway. It then goes through all node indices and checks if the distance is less than min dist. If it is, set closest_idx = node_idx and then min_dist = dist. 
+
+### Third Task : Calculate the H Value 
+Now we need to calculate the distance to the end node from the node given as an argument. The function is called RoutePlanner::CalculateHValue and took in a const pointer parameter of type RouteModel::Node. To be terribly honest, I didn't really question why a pointer was used here. I had a shaky appreciation for pointers during this program. After doing some more research, I think this pointer is useful because you can access this data from multiple locations in the program. I guess it makes the program more compact.... Its const because you are not going to redefine it after instantiation. Either way, it was necessary to access the underlying distance method. Since its a pointer you need to use '->' and then apply it to another pointer to the end node. 
+
+### Fourth Task : Add Neighbors
+
+If the cell we are in is not the goal cell, we need to search the surrounding cells to advance to the desired location. The function that needed to be completed was the RoutePlanner::AddNeighbors(). It took a pointer to a parameter called current_node. I remember using multiple sources from the knowledge forum to finish this particular code portion. So the first thing we need to do is use the FindNeighbors() Method to poulate the current_node.neighbors vector. Need to dereference to access underlying method. 
+
+The FindNeighbors() method uses a for loop to investigate each road in the array. It then creates a new neighbor pointer which then is added through emplace_back into the neighbors vector. 
+
+So now that the neighbors array is populated we need to loop through each node entry. These will be pointers. The node in each for loop pass will have its parent attribute, g_value and h_value attributes established. It will then be put into the open_list through emplace_back. the visited attribute will also be set to true. 
+
+### Fifth Task : Next Node Method
+
+Now we need to find ways of comparing cells to see which route needs to be taken. First the boolean compare function needs to be created. The compare function takes two const pointers as parameters. I needed to dereference the inputs to access the underlying g_value and h_value attributes and then generate the f values for each node. I then needed to see which f value was smallest. The smallest value would be the ideal pathway. 
+
+This was then used in the NextNode Method where the open_list would be sorted using the compare method as the critieria. Then I needed to get the lowest sum from the back of the list. The entry was removed and then the sum was returned as a pointer. 
+
+### Sixth Task : Construct Final Path 
 
 ## Start of Project
 
