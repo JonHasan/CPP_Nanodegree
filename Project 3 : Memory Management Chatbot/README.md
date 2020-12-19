@@ -1,5 +1,52 @@
 # CPPND: Memory Management Chatbot
 
+This project was definitely the most difficult one for me. I knew before the program that memory management was the most valuable aspect of C++. The rule of five, resource sharing policies, move semantics and smart pointers had me doing more research on the knowledge forum and outside internet resources. 
+
+Smart pointers are used when we don't want to worry about allocation and deallocation taks of memory management. When the smart pointer gets out of scope. It will automatically release the memory that was in use. However, it still requires more resources to use a smart pointer than it is to manually allocate and deallocate memory. One needs to be careful about memory leaks though with the latter. 
+
+## Code Explanation
+
+I will now begin the explanation of each of the tasks. 
+
+### Task 1: Exclusive Ownership
+
+The first thing that needed to be done was to change the ownership of the chatLogic variable. It needs to be an exclusive resource of the class ChatBotPanelDialog. It started off as a regular pointer but was transformed to a std::unique_ptr. Since the unique pointer takes care of resource destruction, the destructor in chatgui.cpp is basically useless. I commented out the destructor code. 
+
+### Task 2 : Apply the Rule of Five
+
+This task was a difficult one. I had a shaky appreciation for the rule of five which says you need to implement a copy constructor, an assigment operator, a destructor, a move constructor and move assignment operator. These changes need to be made in chatbot.h and chatbot.cpp. 
+
+#### Copy Constructor
+For the copy constructor, I needed to do a deep copy of all the data. So from this source node reference I needed to place all of the attributes into new variables and then place a new image variable with all of the deep copied data. A suggestion was given to me on this where I was supposed to do a check to see if the image attribute was not NULL. The image would then be make with a new wxBitmap with a dereferenced parameter of source.image. 
+
+#### Copy Assignment constructor 
+
+For the copy assignment constructor, I needed to assign the source attributes to new variables and then set the image equal to a new wxBitmap(); 
+
+I then needed to deepcopy with the image attribute from source. 
+
+#### Move Constructor
+
+For the move constructor, I needed to do the same thing as above for the first half by taking a R-value reference to the source parameter. Then setting new image, chatlogic, rootNode and currentNode variables equal to the respective attributes in the source parameter. Then the source needs to be removed by setting all source attributes to null pointer. 
+
+#### Move Assignment Operator 
+
+For the Move Assignment operator, needed to check if the current instance is equal to the current source, return the current instance. 
+
+copy the attributes from source to new variables. Then set all attributes to null. 
+
+#### Destructor 
+
+Destructor is already possible with the ~ character in front of a method name. 
+
+### Task 3 : Exclusive Ownership 2 
+
+In the chatlogic.h/chatlogic.cpp, I needed to change the vector called nodes so that any instance of GraphNodes that are referred to by the vector are owned by class ChatLogic. I had to go to the ChatLogic::LoadAnswerGraphFromFile and change the edge pointer to a unique_ptr and then make each graph edge unique. Then I needed to set the attributes for each edge. Then the reference needs to be stored. 
+
+### Task 4 : Moving smart pointers
+
+### Task 5 : Moving the Chatbot
+
 This is the project for the third course in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213): Memory Management.
 
 <img src="images/chatbot_demo.gif"/>
