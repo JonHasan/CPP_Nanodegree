@@ -85,6 +85,12 @@ This was then used in the NextNode Method where the open_list would be sorted us
 
 ### Sixth Task : Construct Final Path 
 
+Now it is necessary to find the final path, I needed to finish the RoutePlanner::ConstructFinalPath() Method. It takes the pointer to a current_node which starts off as the final goal state. A while loop needed to be created with the condition that as long as the start node is not equal to the current node, the loop would continue to execute. Each loop the distance would be calculuated by dereferencing the pointer and accessing its distance method. The input would be the parent attribute of that node. This node would then be saved into the path found vector through push_back. The parent node of the initial node will then be set to the current node. This will then cascade until the start state is reached. 
+
+### Seventh Task : A star search 
+
+We have all of the steps we need to perform the final path search. Initialize a null pointer and then initialize a current node. Need to set the visited attribute of the current node to true. Apply the AddNeighbors() method with the current node as input. add the nodes found to the open list.  Now we need to advance to the next node that is the best choice. This is done through the NextNode() Method. Then we need to find the neighbors of that node and search with NextNode() method until the start state is reached. Then the final path is returned. 
+
 ## Start of Project
 
 <img src="map.png" width="600" height="450" />
