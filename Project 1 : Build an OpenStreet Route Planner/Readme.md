@@ -8,7 +8,10 @@ How would we develop this algorithm in c++?
 
 The pseudocode is shown below 
 
-## Pseudocode - source: Udacity C++ Nanodegree Program
+## Pseudocode  
+
+source: Udacity C++ Nanodegree Program
+
 Search( grid, initial_point, goal_point ) :
 
 Initialize an empty list of open nodes.
@@ -35,6 +38,22 @@ If the cell is empty, compute the cost (g value) and the heuristic, and add to t
 Mark the cell as closed.
 If you exit the while loop because the list of open nodes is empty, you have run out of new nodes to explore and haven't found a path
 
+Here is what that looks like graphically 
+
+## Graphic representation 
+
+<img src ="AstarHeuristicFunction.png" width = "600" height = "450" /> 
+
+You start from the goal state and then choose the cell which minimizes the following function 
+
+f = g + h(x,y) 
+
+The heuristic is a follows 
+
+h(x,y) <= Distance to goal from x,y
+
+
+## Start of Project
 
 <img src="map.png" width="600" height="450" />
 
