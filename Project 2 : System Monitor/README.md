@@ -1,5 +1,6 @@
 # CppND-System-Monitor
 
+This is the second project in the Nanodegree. I needed to be able to parse linux system files in order to create a system monitor. This one had its own unique set of challenges but it was just an exercise in Object Oriented Programming. I will be going over the basics in detail. 
 
 ![System Monitor](images/monitor.png)
 
