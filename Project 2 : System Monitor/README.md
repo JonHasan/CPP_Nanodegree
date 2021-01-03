@@ -3,7 +3,25 @@
 
 This is the second project in the Nanodegree. I needed to be able to parse linux system files in order to create a system monitor. This one had its own unique set of challenges but it was just an exercise in Object Oriented Programming. I will be going over the basics in detail. 
 
-## Task 1
+## Task 1 : Updating the Linux_Parser.Cpp
+
+This was a chunky file when all the updates were complete. However, it looks like a lot of the implementations were not very efficient. I will go through each one. 
+
+### LinuxParser::MemoryUtilization()
+
+I instantiated all variables as floats. I made a stream variable and put in the directory of kProcDirectory + kMemInfoFilename. When the stream was open, a for loop was used to go over four lines that each had an important piece of data. The first had MemTotal, second had MemFree, third had MemAvailable and the fourth had Buffers. The equation of 
+
+1 - (MemFree / (MemTotal - Buffers))
+
+was used to calculate the memory utilization. The reviewer had a more efficient solution. using two while loops. The first one was getting the line from the filestream. The second was constantly checking the linestream output for a certain key. 
+
+### LinuxParser::UpTime()
+
+For this function I opened up a stream again and got a single line and got the uptime. 
+
+### 
+
+####
 
 ## Task 2
 
