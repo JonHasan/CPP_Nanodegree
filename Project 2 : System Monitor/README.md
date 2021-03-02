@@ -17,13 +17,33 @@ was used to calculate the memory utilization. The reviewer had a more efficient 
 
 ### LinuxParser::UpTime()
 
-For this function I opened up a stream again and got a single line and got the uptime. 
+For this function I opened up a stream again and got a single line and then used >> to get the uptime. 
+
+### LinuxParser::Jiffies()
+
+For this function, I used the previously defined UpTime() function to get the uptime. This was then multiplied with sysconf(_SC_CLK_TCK). This is the clock ticks per second
+
+### LinuxParser::
 
 ### 
 
 ####
 
-## Task 2
+## Task 2 : Updating the Process.cpp 
+This file seemed to be composed mostly of getter functions. Only the results of the functions were being returned.
+The values returned from the getters are as follows. 
+
+Process:Pid() returns the pid or the process number
+
+Process::CpuUtilization() returns the cpuUtilization_ or the amount of CPU that is being taken up by the process
+
+Process::command() returns command_ or the actual command that started the process
+
+Process::user() returns user_ or the actual user that started the process
+
+Process:Uptime() returns uptime_ or the lifetime of the process
+
+Process:operator<(Process const& a) returns a boolean that compares two process objects. This overloads the comparison operator 
 
 ## Task 3
 
